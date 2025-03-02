@@ -2,6 +2,12 @@
 
 A simple URL shortener application built with Spring Boot, Spring Data JPA, and MySQL. This project demonstrates how to create a REST API to generate and resolve shortened URLs.
 
+## Architecture
+
+![Project Architecture](assets/project-architecture.png)
+
+The diagram above illustrates the flow of data from the client to the embedded Tomcat server, through the controller, service, and repository layers, and finally to the MySQL database.
+
 ## Table of Contents
 
 - [URL Shortener](#url-shortener)
