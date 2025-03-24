@@ -1,0 +1,162 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+// Interface for URL Shortener
+interface URLShortenerInterface {
+    /**
+     * Generates a random short URL for a given long URL
+     * @param longURL The original long URL to be shortened
+     * @return The generated short URL
+     * @throws URLAlreadyExistsException If the long URL is already mapped
+     */
+    String register(String longURL) throws URLAlreadyExistsException;
+    
+    /**
+     * Generates a custom short URL for a given long URL
+     * @param longURL The original long URL
+     * @param customShortURL The custom short URL to be used
+     * @return The short URL
+     * @throws URLAlreadyExistsException If the long or short URL is already mapped
+     */
+    String register(String longURL, String customShortURL) throws URLAlreadyExistsException;
+    
+    /**
+     * Looks up the long URL for a given short URL
+     * @param shortURL The short URL to look up
+     * @return The original long URL
+     * @throws URLNotFoundException If the short URL is not found
+     */
+    String lookup(String shortURL) throws URLNotFoundException;
+    
+    /**
+     * Deletes the mapping for a given long URL
+     * @param longURL The long URL to be deleted
+     * @throws URLNotFoundException If the long URL is not found
+     */
+    void delete(String longURL) throws URLNotFoundException;
+    
+    /**
+     * Gets the hit count for a given long URL
+     * @param longURL The long URL to check
+     * @return The number of times the URL has been looked up
+     * @throws URLNotFoundException If the long URL is not found
+     */
+    int getHitCount(String longURL) throws URLNotFoundException;
+}
+
+// Custom Exceptions
+class URLAlreadyExistsException extends Exception {
+    public URLAlreadyExistsException(String message) {
+        super(message);
+    }
+}
+
+class URLNotFoundException extends Exception {
+    public URLNotFoundException(String message) {
+        super(message);
+    }
+}
+
+// Concrete Implementation
+public class XURLImpl implements URLShortenerInterface {
+    // Maps to store URL relationships and hit counts
+    private Map<String, String> longToShortMap = new HashMap<>();
+    private Map<String, String> shortToLongMap = new HashMap<>();
+    private Map<String, Integer> hitCountMap = new HashMap<>();
+    
+    // Random generator for creating short URLs
+    private Random random = new Random();
+    
+    // Characters to use for generating short URLs
+    private static final String CHAR_SET = 
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    
+    // Generate a random 9-character short URL
+    private String generateRandomShortURL() {
+        StringBuilder shortURL = new StringBuilder(9);
+        for (int i = 0; i < 9; i++) {
+            shortURL.append(CHAR_SET.charAt(
+                random.nextInt(CHAR_SET.length())
+            ));
+        }
+        return shortURL.toString();
+    }
+    
+    @Override
+    public String register(String longURL) throws URLAlreadyExistsException {
+        // Check if long URL already exists
+        if (longToShortMap.containsKey(longURL)) {
+            throw new URLAlreadyExistsException("Long URL already mapped");
+        }
+        
+        // Generate unique short URL
+        String shortURL;
+        do {
+            shortURL = generateRandomShortURL();
+        } while (shortToLongMap.containsKey(shortURL));
+        
+        // Store mappings
+        longToShortMap.put(longURL, shortURL);
+        shortToLongMap.put(shortURL, longURL);
+        hitCountMap.put(longURL, 0);
+        
+        return shortURL;
+    }
+    
+    @Override
+    public String register(String longURL, String customShortURL) 
+        throws URLAlreadyExistsException {
+        // Check if long URL or short URL already exists
+        if (longToShortMap.containsKey(longURL) || 
+            shortToLongMap.containsKey(customShortURL)) {
+            throw new URLAlreadyExistsException(
+                "Long URL or Short URL already mapped"
+            );
+        }
+        
+        // Store mappings
+        longToShortMap.put(longURL, customShortURL);
+        shortToLongMap.put(customShortURL, longURL);
+        hitCountMap.put(longURL, 0);
+        
+        return customShortURL;
+    }
+    
+    @Override
+    public String lookup(String shortURL) throws URLNotFoundException {
+        String longURL = shortToLongMap.get(shortURL);
+        if (longURL == null) {
+            throw new URLNotFoundException("Short URL not found");
+        }
+        
+        // Increment hit count
+        hitCountMap.put(longURL, hitCountMap.get(longURL) + 1);
+        
+        return longURL;
+    }
+    
+    @Override
+    public void delete(String longURL) throws URLNotFoundException {
+        // Check if long URL exists
+        String shortURL = longToShortMap.get(longURL);
+        if (shortURL == null) {
+            throw new URLNotFoundException("Long URL not found");
+        }
+        
+        // Remove mappings
+        longToShortMap.remove(longURL);
+        shortToLongMap.remove(shortURL);
+        hitCountMap.remove(longURL);
+    }
+    
+    @Override
+    public int getHitCount(String longURL) throws URLNotFoundException {
+        Integer hitCount = hitCountMap.get(longURL);
+        if (hitCount == null) {
+            throw new URLNotFoundException("Long URL not found");
+        }
+        
+        return hitCount;
+    }
+}
