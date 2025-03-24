@@ -1,6 +1,7 @@
-# XURL - URL Shortener
+#XURL - URL Shortener
 A Java-based URL shortening utility that converts long URLs into short, manageable codes for easier sharing and tracking. XURL provides efficient bidirectional mapping between original URLs and their shortened versions.
-🚀 Features
+
+#🚀 Features
 
 URL Shortening: Convert long URLs to 9-character alphanumeric codes
 Custom Short URLs: Register custom short codes for specific long URLs
@@ -9,7 +10,7 @@ Efficient Storage: O(1) lookup time using HashMap data structures
 Robust Error Handling: Custom exceptions for data integrity
 One-to-One Mapping: Ensures unique mappings in both directions
 
-📋 Core Components
+#📋 Core Components
 URLShortenerInterface
 Interface defining the contract for URL shortening operations:
 
@@ -19,7 +20,7 @@ lookup(String shortURL): Retrieve original long URL
 delete(String longURL): Remove URL mapping
 getHitCount(String longURL): Retrieve access statistics
 
-XURLImpl
+#XURLImpl
 Concrete implementation of the URL shortener with:
 
 HashMap-based storage for O(1) lookups
@@ -27,18 +28,18 @@ Random 9-character code generation
 Hit count tracking
 Error handling
 
-Exception Handling
+#Exception Handling
 
 URLAlreadyExistsException: Thrown when attempting to map already registered URLs
 URLNotFoundException: Thrown when looking up non-existent URLs
 
-🔧 Implementation Details
+#🔧 Implementation Details
 
 Uses three HashMap structures for bidirectional mapping and hit counting
 Employs alphanumeric character set (a-z, A-Z, 0-9) for short URL generation
 Guarantees uniqueness through conflict detection
 
-📊 Demo Usage
+#📊 Demo Usage
 javaCopy// Creating a URL shortener instance
 URLShortenerInterface urlShortener = new XURLImpl();
 
@@ -57,7 +58,7 @@ System.out.println("Original URL: " + originalURL);
 // Check hit count
 int hits = urlShortener.getHitCount(longURL);
 System.out.println("Hit count: " + hits);
-🧠 Learning Outcomes
+#🧠 Learning Outcomes
 Through this project, I developed skills in:
 
 Java interface and implementation
@@ -66,7 +67,7 @@ Exception handling
 Test-driven development
 Object-oriented design principles
 
-🧪 Testing
+#🧪 Testing
 The implementation is verified through comprehensive test cases that cover:
 
 Random and custom URL registration
@@ -74,5 +75,5 @@ URL lookups and hit count tracking
 Error handling for duplicate URLs
 Edge cases and boundary testing
 
-📝 License
+#📝 License
 This project is open-source and available under the MIT License.
