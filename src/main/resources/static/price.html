@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing | Short.ly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Variables and Reset */
+        :root {
+            --primary-color: #6C63FF;
+            --secondary-color: #4D44DB;
+            --accent-color: #FF6B6B;
+            --text-primary: #2D3748;
+            --text-secondary: #718096;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F7FAFC;
+            --bg-accent-light: rgba(108, 99, 255, 0.05);
+            --bg-accent-alt: rgba(77, 68, 219, 0.05);
+            --border-color: #E2E8F0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --glow: 0 0 20px rgba(108, 99, 255, 0.3);
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #F7FAFC;
+            --text-secondary: #CBD5E0;
+            --bg-primary: #1A202C;
+            --bg-secondary: #2D3748;
+            --bg-accent-light: rgba(108, 99, 255, 0.1);
+            --bg-accent-alt: rgba(77, 68, 219, 0.1);
+            --border-color: #4A5568;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .main-header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-secondary);
+            transform: rotate(15deg);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        /* Hero Section */
+        .price-hero {
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .price-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .price-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+            background: linear-gradient(45deg, #ffffff, #f0f0f0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price-hero .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            font-family: 'Merriweather', serif;
+            font-weight: 300;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            width: 100%;
+            height: 60px;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .section-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 60px;
+        }
+
+        .section-divider .shape-fill {
+            fill: var(--bg-secondary);
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 4rem 0;
+        }
+
+        .pricing-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg-primary);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: var(--glow);
+        }
+
+        .pricing-card.popular::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-bottom-left-radius: 0.5rem;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features {
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features li i {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            font-weight: 800;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            background: var(--bg-primary);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-secondary);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .price-cta {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 1rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: sparkle 4s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .price-cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+        }
+
+        .price-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+        }
+
+        .price-cta .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            padding: 1.2rem 2.5rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .price-cta .btn-primary:hover {
+            background: #f8f8f8;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        .main-footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3, .footer-column h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .footer-column p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .footer-credit {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .price-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .price-hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .pricing-section h2,
+            .faq-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .price-cta h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .price-hero {
+                padding: 3rem 1rem;
+            }
+
+            .price-hero h1 {
+                font-size: 2rem;
+            }
+
+            .pricing-section h2,
+            .faq-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="container">
+        <div class="header-content">
+            <a href="/" class="logo">🔗 Short.ly</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li>
+                        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                    <li><a href="/signup.html" class="btn-primary">Sign In</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="price-hero">
+        <div class="price-hero-content">
+            <h1>Simple, Transparent Pricing</h1>
+            <p class="subtitle">Choose the perfect plan for your link management needs. No hidden fees, no surprises.</p>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <h2>Our Pricing Plans</h2>
+        <!-- Added a placeholder for user email input -->
+        <div class="container" style="text-align: center; margin-bottom: 2rem;">
+            <p style="margin-bottom: 1rem; color: var(--text-secondary);">Enter your email to associate with the subscription:</p>
+            <input type="email" id="userEmail" placeholder="your.email@example.com"
+                   style="padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; width: 100%; max-width: 300px; color: var(--text-primary); background: var(--bg-primary);">
+            <div id="paymentMessage" style="margin-top: 1rem; color: var(--accent-color); font-weight: 600;"></div>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Free Plan -->
+            <div class="pricing-card">
+                <h3>Free</h3>
+                <div class="price">$0 <span>/month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> 100 links per month</li>
+                    <li><i class="fas fa-check"></i> Basic analytics</li>
+                    <li><i class="fas fa-check"></i> Custom short URLs</li>
+                    <li><i class="fas fa-check"></i> Link expiration</li>
+                    <li><i class="fas fa-times"></i> No custom domains</li>
+                    <li><i class="fas fa-times"></i> No API access</li>
+                </ul>
+                <!-- Added data-plan-id -->
+                <button class="btn-primary subscribe-btn" data-plan-id="1">Get Started</button>
+            </div>
+
+            <!-- Pro Plan (Most Popular) -->
+            <div class="pricing-card popular">
+                <h3>Pro</h3>
+                <div class="price">$9 <span>/month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> 1,000 links per month</li>
+                    <li><i class="fas fa-check"></i> Advanced analytics</li>
+                    <li><i class="fas fa-check"></i> Custom short URLs</li>
+                    <li><i class="fas fa-check"></i> 1 custom domain</li>
+                    <li><i class="fas fa-check"></i> API access</li>
+                    <li><i class="fas fa-check"></i> Priority support</li>
+                </ul>
+                <!-- Added data-plan-id -->
+                <button class="btn-primary subscribe-btn" data-plan-id="2">Start Free Trial</button>
+            </div>
+
+            <!-- Business Plan -->
+            <div class="pricing-card">
+                <h3>Business</h3>
+                <div class="price">$29 <span>/month</span></div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> 10,000 links per month</li>
+                    <li><i class="fas fa-check"></i> Premium analytics</li>
+                    <li><i class="fas fa-check"></i> Custom short URLs</li>
+                    <li><i class="fas fa-check"></i> 5 custom domains</li>
+                    <li><i class="fas fa-check"></i> API access</li>
+                    <li><i class="fas fa-check"></i> 24/7 support</li>
+                </ul>
+                <!-- Added data-plan-id -->
+                <button class="btn-primary subscribe-btn" data-plan-id="3">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What payment methods do you accept?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers for annual plans.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I change plans later?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you can upgrade or downgrade your plan at any time. Your billing will be prorated based on your usage.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is there a free trial?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! Our Pro plan comes with a 14-day free trial. No credit card required to try out all the premium features.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer discounts for non-profits?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer a 30% discount for registered non-profit organizations. Please contact our sales team with proof of your non-profit status.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="price-cta">
+        <h2>Ready to Get Started?</h2>
+        <p>Join thousands of users who trust Short.ly for their link management needs.</p>
+        <a href="/" class="btn-primary">
+            <i class="fas fa-rocket"></i>
+            Try Short.ly Now
+        </a>
+    </section>
+</main>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Short.ly</h3>
+                <p>Advanced URL shortening service for professionals and businesses.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="https://azharuddinmalik.github.io/" aria-label="PortFolio"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/azharuddin-malik" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/AzharuddinMalik" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-credit">
+            <p>© 2025 Short.ly. All rights reserved. | Designed with ❤️</p>
+            <p style="
+                color: var(--primary); /* Using your primary color for visibility */
+                font-weight: bold;
+                margin-top: 10px; /* Add some space above */
+                text-align: center;
+                font-size: 1rem;
+                padding: 5px;
+                border: 1px solid var(--primary);
+                border-radius: 5px;
+                display: inline-block; /* To make border fit content */
+                background-color: var(--card-bg); /* Use card background for a subtle highlight */
+            ">
+                This Web Page is under Maintenance !!
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const themeIcon = themeToggle.querySelector('i');
+
+    // Check for saved theme preference or default to light
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        themeIcon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            item.classList.toggle('active');
+
+            // Close other open items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+        });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // ===== PAYMENT INTEGRATION LOGIC =====
+    const subscribeButtons = document.querySelectorAll('.subscribe-btn');
+    const userEmailInput = document.getElementById('userEmail');
+    const paymentMessage = document.getElementById('paymentMessage');
+
+    subscribeButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const planId = button.dataset.planId;
+            const userEmail = userEmailInput.value.trim();
+
+            if (!userEmail) {
+                paymentMessage.textContent = 'Please enter your email address.';
+                paymentMessage.style.color = 'var(--accent-color)'; // Use accent for error
+                return;
+            }
+
+            paymentMessage.textContent = 'Processing...';
+            paymentMessage.style.color = 'var(--primary-color)'; // Use primary for processing
+            button.disabled = true; // Disable button during processing
+
+            try {
+                const response = await fetch(`/api/payment/create-checkout-session?planId=${planId}&userEmail=${encodeURIComponent(userEmail)}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json' // Backend expects JSON, even if params are in URL
+                    },
+                    // For POST requests with URLSearchParams in body, remove 'Content-Type': 'application/json'
+                    // If you expect to send a JSON body:
+                    // body: JSON.stringify({ planId: planId, userEmail: userEmail })
+                    // BUT your backend uses @RequestParam, so URL params are correct.
+                    // Just removing Content-Type application/json or making it application/x-www-form-urlencoded
+                    // is not strictly necessary for @RequestParam but good practice.
+                    // Let's explicitly set it to avoid issues with default fetch behavior
+                    // For @RequestParam in Spring, it often parses from URL query string directly,
+                    // so an empty body or x-www-form-urlencoded is fine.
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Failed to create checkout session.');
+                }
+
+                const data = await response.json();
+                if (data.url) {
+                    window.location.href = data.url; // Redirect to Stripe Checkout page
+                } else {
+                    throw new Error('No checkout URL received from the backend.');
+                }
+            } catch (error) {
+                console.error('Payment initiation error:', error);
+                paymentMessage.textContent = `Error: ${error.message}`;
+                paymentMessage.style.color = 'var(--error)'; // Use error color for errors
+            } finally {
+                button.disabled = false; // Re-enable button
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

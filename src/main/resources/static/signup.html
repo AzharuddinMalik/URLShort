@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Short.ly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .auth-form {
+            background: var(--card-bg);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            animation: fadeInSlide 0.8s ease forwards;
+        }
+
+        .auth-form input[type="email"],
+        .auth-form input[type="password"],
+        .auth-form input[type="text"] {
+            padding: 1rem;
+            font-size: 1rem;
+            border-radius: 10px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .auth-form input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+            outline: none;
+        }
+
+        .auth-form .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-weight: 700;
+            border-radius: 10px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .auth-form .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .auth-switch a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeInSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="container">
+        <div class="header-content">
+            <a href="/" class="logo">🔗 Short.ly</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li>
+                        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="about-container">
+    <section class="about-hero">
+        <div class="hero-content">
+            <h1>Create Your Short.ly Account</h1>
+            <p class="subtitle">Sign up to start managing and analyzing your short links</p>
+        </div>
+        <div class="hero-illustration">
+            <i class="fas fa-user-plus"></i>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <h2>Sign Up</h2>
+        <form id="signup-form" class="auth-form" style="max-width: 500px; margin: 0 auto;">
+            <label for="signup-username"></label><input type="text" id="signup-username" placeholder="Username" required>
+            <label for="signup-email"></label><input type="email" id="signup-email" placeholder="Email" required>
+            <label for="signup-password"></label><input type="password" id="signup-password" placeholder="Password" required>
+            <button type="submit" class="btn-primary" style="margin-top: 1rem;">Sign Up</button>
+        </form>
+        <p style="text-align:center; margin-top: 1rem;">Already have an account? <a href="login.html">Login here</a></p>
+    </section>
+</main>
+
+<footer class="main-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Short.ly</h3>
+                <p>Advanced URL shortening service for professionals and businesses.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="https://azharuddinmalik.github.io/" aria-label="PortFolio"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/in/azharuddin-malik" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/AzharuddinMalik" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-credit">
+            <p>© 2025 Short.ly. All rights reserved. | Designed with ❤️</p>
+            <p style="
+                color: var(--primary); /* Using your primary color for visibility */
+                font-weight: bold;
+                margin-top: 10px; /* Add some space above */
+                text-align: center;
+                font-size: 1rem;
+                padding: 5px;
+                border: 1px solid var(--primary);
+                border-radius: 5px;
+                display: inline-block; /* To make border fit content */
+                background-color: var(--card-bg); /* Use card background for a subtle highlight */
+            ">
+                This Web Page is under Maintenance !!
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

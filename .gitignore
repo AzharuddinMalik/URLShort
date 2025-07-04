@@ -1,33 +1,76 @@
-HELP.md
+# Compiled class files
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Log files
+*.log
+logs/
+
+# Maven
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+# Gradle
+.gradle/
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+.idea/  # IntelliJ IDEA project files
+*.iml   # IntelliJ IDEA module files
+*.ipr
+*.iws
 
-### VS Code ###
-.vscode/
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+tmp/
+.apt_generated/
+.factorypath
+.springBeans
+
+# OS generated files
+.DS_Store
+.localized
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Environment variables and secrets
+.env
+# If you have a separate file for local secrets, e.g., application-local.properties
+application-local.properties
+# If you store your keys in a file that's not committed, for example:
+# src/main/resources/application-secrets.properties
+# src/main/resources/application-secrets.yml
+
+# Specific to your project:
+# If you have a separate properties file for secrets, add it here:
+# application-dev.properties # if you use profiles for local development secrets
+# application-prod.properties # if you use profiles for production secrets
+
+# Stripe API key (if you keep it in a separate file, not in application.properties)
+# For example, if you had a file named stripe_keys.properties
+# stripe_keys.properties
+
+# Database specific files (e.g., H2 database files if used in dev)
+*.mv.db
+*.trace.db
+
+# IntelliJ specific files
+*.iml
+.idea/

@@ -3,8 +3,11 @@ package com.example.url_shortener.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "urls")
+@jakarta.persistence.Entity
+@Table(name = "urls", indexes = {
+        @Index(name = "idx_short_url", columnList = "shortUrl"),
+        @Index(name = "idx_long_url", columnList = "longUrl")
+})
 public class Url {
 
     @Id
@@ -14,11 +17,14 @@ public class Url {
     @Column(nullable = false, unique = true)
     private String shortUrl;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 768)
     private String longUrl;
 
-    @Column(nullable = false)
+    @Column
     private LocalDateTime createdAt;
+
+//    @Column(nullable = false)
+//    private int accessCount = 0;
 
     // Default constructor
     public Url() {}
