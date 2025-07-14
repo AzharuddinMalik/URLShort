@@ -3,6 +3,11 @@ Short.ly is a powerful and user-friendly URL shortening service designed for ind
 
 This project is built using Spring Boot for the backend and a modern HTML, CSS, and JavaScript frontend, ensuring a seamless and responsive user experience.
 
+## Architecture
+
+
+![Project Front-End](assets/Home_Page.png)
+![Project Architecture](assets/project-architecture.png)
 ## ✨ Features
 * URL Shortening: Convert long, unwieldy URLs into compact, easy-to-share short links.
 * Custom Aliases: Create personalized and memorable short URLs (e.g., short.ly/MyProject).
